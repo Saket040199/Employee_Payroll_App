@@ -177,10 +177,10 @@ select{
     background-color: grey;
 }
 
-.submit-reset{
+/*.submit-reset{
     margin-left: 5px;
     margin-right: 5px;
-}
+} */
 
 @media only screen and (max-width:960px){
     .cancelButton {
