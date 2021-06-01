@@ -25,13 +25,14 @@ window.addEventListener('DOMContentLoaded', (event) =>{
 
 const save = () => {
     try{
-        let employeePayrollData = cretaeEmployeePayroll();
+        let employeePayrollData = createEmployeePayroll();
+        createAndupdateStorage(employeePayrollData);
     } catch (e){
         return;
     }
 }
 
-const cretaeEmployeePayroll = () => {
+const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayRoll();
     try{
         employeePayrollData.name = getInputValueById('#name');
@@ -62,4 +63,16 @@ const getSelectedValues = (propertyValue) => {
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
+}
+
+function createAndupdateStorage(employeePayrollData){
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+
+    if(employeePayrollList != undefined){
+        employeePayrollList.push(employeePayrollData);
+    }else{
+        employeePayrollList = [employeePayrollData];
+    }
+    alert(employeePayrollList.toString());
+    localStorage.selItems("EmployeePayrollList",JSON.stringify(employeePayrollList));
 }
