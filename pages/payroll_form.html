@@ -20,7 +20,7 @@
         </div>
     </header>
     <div class="form-content">
-    <form class="form" action="#" onsubmit="save();return false">
+    <form class="form" action="#" onsubmit="save()" onreset="resetForm()">
         <div class="form-head">
             Employee Payroll Form
         </div>
@@ -28,7 +28,7 @@
             <label class="label text" for="name">Name</label>
             <input class="input" type="text" id="name" name="name"
                    placeholder="Your name..Please give a space between your name and sername" required>
-                   <error-output class="error-text-output" for="name"></error-output>
+                   <error-output class="error-text-output" for="text"></error-output>
         </div>
         <div class="row-content">
             <label class="label text" for="profile">Profile image</label>
