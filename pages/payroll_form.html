@@ -6,7 +6,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/payroll_form_css.css">
     <title>Employee payroll form</title>
-    
+    <script defer src="../js/EmployeePayroll.js"></script>
+    <script defer src="../js/payroll_form_js.js"></script>
 </head>
 <body>
     <header class="header-content header">
@@ -26,7 +27,8 @@
         <div class="row-content">
             <label class="label text" for="name">Name</label>
             <input class="input" type="text" id="name" name="name"
-                   placeholder="Your name.." required>
+                   placeholder="Your name..Please give a space between your name and sername" required>
+            <error-output class="error-text-output" for="name"></error-output>
         </div>
         <div class="row-content">
             <label class="label text" for="profile">Profile image</label>
@@ -81,7 +83,7 @@
             <label class="label text" for="salary">Choose your salary</label>
             <input class="input" type="range" name="salary" id="salary" 
                 min="300000" max="500000" step="100" value="400000">
-            <output class="salary-output text" form="salary">400000</output>
+            <output class="salary-output text" for="salary">400000</output>
         </div>
         <div class="row-content">
             <label class="label text" for="startDate"> Start Date</label>
@@ -158,5 +160,4 @@
     </form>
     </div>
 </body>
-<script src="../js/payroll_form_js.js"></script>
 </html>
