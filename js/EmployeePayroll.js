@@ -8,7 +8,10 @@ class EmployeePayRoll{
 
     get name(){ return this._name;}
     set name(name) {
-       this._name=name;
+        let nameRegex=RegExp('^[A-Z]{1}[a-z]{2,}\\s[A-Za-z]{3,}$');
+        if(nameRegex.test(name))
+           this._name=name;
+        else throw 'Name is Incorrect';
     }
 
     get profile(){ return this._profile;}
@@ -53,3 +56,4 @@ class EmployeePayRoll{
              
     }
 }
+
