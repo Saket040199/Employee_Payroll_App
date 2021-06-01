@@ -37,7 +37,13 @@ class EmployeePayRoll{
 
     get startDate(){ return this._startDate;}
     set startDate(startDate){
-        this._startDate=startDate;
+        startDate = startDate.getTime() + (30 * 24 * 60 * 60 * 1000);
+        let today = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
+        if (today >= startDate) {
+            this._startDate = startDate;
+        } else {
+            ("Invalid date! Please give proper date");
+        }
     }
 
     get notes(){ return this._notes;}
