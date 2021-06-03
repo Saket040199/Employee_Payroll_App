@@ -1,6 +1,6 @@
 class EmployeePayRoll{
 
-    
+
     get id(){return this._id}
     set id(id){
         this._id=id;
@@ -8,8 +8,8 @@ class EmployeePayRoll{
 
     get name(){ return this._name;}
     set name(name) {
-        let nameRegex=RegExp('^[A-Z]{1}[a-z]{2,}\\s[A-Za-z]{3,}$');
-        if(nameRegex.test(name))
+         let nameRegex=RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
+         if(nameRegex.test(name))
            this._name=name;
         else throw 'Name is Incorrect';
     }
@@ -37,13 +37,7 @@ class EmployeePayRoll{
 
     get startDate(){ return this._startDate;}
     set startDate(startDate){
-        startDate = startDate.getTime() + (30 * 24 * 60 * 60 * 1000);
-        let today = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
-        if (today >= startDate) {
-            this._startDate = startDate;
-        } else {
-            ("Invalid date! Please give proper date");
-        }
+        this._startDate = startDate;
     }
 
     get notes(){ return this._notes;}
@@ -51,15 +45,12 @@ class EmployeePayRoll{
         this._notes = notes;
     }
 
-    toString(){
-        const options={ year:'numeric', month:'String',day:'numeric'};
-        const empDate= !this.startDate ? "undefined":
-                        this.startDate.toLocalDateString("en-US",options);
-        return "id: "+this.id +" name: "+this.name +" gender: "+this.gender +
-               " profilePic: "+this.profile +" department: "+this.department +
-               " salary: "+this.salary +" startDate: "+this.startDate +
-               " notes: "+this.notes;
-             
+    toString() {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
+       // const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
+        return "id = " + this.id + ", name = " + this.name + ", gender = " + this.gender + ", profile picture = " + this.profile + ", department = " + this.department + ", salary = " + this.salary + ", startDate = " + empDate + ", note = " + this.notes;
     }
+    
 }
 
