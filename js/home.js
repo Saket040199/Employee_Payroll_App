@@ -1,13 +1,22 @@
+let employeePayrollList;
 window.addEventListener('DOMContentLoaded', (event) =>{
+    employeePayrollList = getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = employeePayrollList.length;
     createInnerHtml();
 });
 
+const getEmployeePayrollDataFromStorage = () => {
+    return localStorage.getItem('EmployeePayrollList')?
+                        JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
+
 const createInnerHtml = () => {
+    
     const headerHtml = "<th></th><th>Name</th><th>Gender</th><th>Department</th>"+
                        "<th>Salary</th><th>Start Date</th><th>Actions</th>";
-     const innerHtml = `${headerHtml}`;
-     let empPayrollList = createEmployeePayrollJSON();
-     for (const empPayrollData of empPayrollList){
+     let innerHtml = `${headerHtml}`;
+     if(employeePayrollList.length == 0) return;
+     for (const empPayrollData of employeePayrollList){
         innerHtml =`${innerHtml}
         <tr>
          <td><img class="profile" alt="" src="${empPayrollData._profile}"></td>
@@ -18,46 +27,14 @@ const createInnerHtml = () => {
          <td>${empPayrollData._startDate}</td> 
          <td>
            <img id="${empPayrollData._id}" onclick="remove(this)" alt="delete"
-              src="">
+              src="../assets/outline_remove_circle_black_24dp.png">
            <img id="${empPayrollData._id}" alt="edit" onclick="update(this)"
-              src="">
+              src="../assets/outline_edit_black_24dp.png">
          </td>               
         </tr>
         `;
      }
     document.querySelector('#table-display').innerHTML = innerHtml;
-}
-
-const createEmployeePayrollJSON = () => {
-    let empPayrollListLocal = [
-        {
-            _name: 'Saket jain',
-            _gender: 'male',
-            _department: [
-                'Engineering',
-                'Finance'
-            ],
-            _salary: '5000000',
-            _startDate: '1 April 2021',
-            _note: '',
-            _id: new Date().getTime() ,
-            _profile: '../assets/Ellipse -2.png'
-        },
-        {
-            _name: 'Ayushi jain',
-            _gender: 'female',
-            _department: [
-                'Sales',
-                'Finance'
-            ],
-            _salary: '500000',
-            _startDate: '7 April 2021',
-            _note: '',
-            _id: new Date().getTime() + 1,
-            _profile: '../assets/Ellipse -1.png' 
-        }
-    ];
-    return empPayrollListLocal;
 }
 
 const getDeptHtml = (deptList) => {
