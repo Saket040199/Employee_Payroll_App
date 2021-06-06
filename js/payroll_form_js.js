@@ -28,6 +28,7 @@ const save = () => {
     try {
        let employeePayrollData =  createEmployeePayroll() ;
         createAndupdateStorage(employeePayrollData);
+        window.location.href = '../pages/home.html';
     } catch (e) {
         return ;
     }
@@ -41,14 +42,17 @@ const createEmployeePayroll = () => {
         setTextValue('.error-text-output', e);
         throw e;
     }
+    employeePayrollData.id = new Date().getTime() + 1;
     employeePayrollData.profile = getSelectedValues('[name=profile]').pop();
     employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.notes = getInputValueById('#notes');
-    let date = document.querySelector("#month").value + " " + document.querySelector("#day").value + ", " + document.querySelector("#year").value;
-    employeePayrollData.startDate =new Date(Date.parse(date));
-     alert(employeePayrollData.toString());
+    let date = document.querySelector("#month").value + " " 
+               + document.querySelector("#day").value + " " 
+               + document.querySelector("#year").value;
+    employeePayrollData.startDate =new Date(date);
+     alert("Employee: "+employeePayrollData.toString());
      return employeePayrollData;
 }
 
@@ -68,15 +72,15 @@ const getInputValueById = (id) => {
 
 
 function createAndupdateStorage(employeePayrollData) {
-    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    let employeePayrollList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
 
     if (employeePayrollList != undefined) {
         employeePayrollList.push(employeePayrollData);
     } else {
         employeePayrollList = [employeePayrollData];
     }
-    alert(employeePayrollList.toString());
-    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+    alert("EMployee: "+employeePayrollList.toString());
+    localStorage.setItem('EmployeePayrollList', JSON.stringify(employeePayrollList));
 }
 
 const resetForm = () => {
@@ -100,6 +104,11 @@ const unsetSelectedValues = (propertyValue) => {
 }
 
 const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
+
+const setTextValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
 }

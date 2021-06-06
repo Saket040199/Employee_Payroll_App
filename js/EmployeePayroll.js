@@ -37,11 +37,11 @@ class EmployeePayRoll{
 
     get startDate(){ return this._startDate;}
     set startDate(startDate){
-       // let now=new Date();
-      //  if (startDate > now) throw 'Start date is a Future Date!';
-      //  var diff = Math.abs(now.getTime() - startDate.getTime());
-      //  if (diff / (1000 * 60 * 60 *24) > 30)
-      //  throw 'Start ate is Beyong 30 Days!';
+        // let now=new Date();
+        // if (startDate > now) throw 'Start date is a Future Date!';
+        // var diff = Math.abs(now.getTime() - startDate.getTime());
+        // if (diff / (1000 * 60 * 60 *24) > 120)
+        //    throw 'Start ate is Beyong 120 Days!';
         this._startDate = startDate;
     }
 
@@ -53,7 +53,8 @@ class EmployeePayRoll{
     toString() {
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
       //  const empDate = !this.startDate ? "undefined" : new Date(Date.parse(this.startDate)).toLocaleDateString("en-US", options);
-        const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-GB", options);
+        const empDate = !this.startDate ? "undefined" :
+                         this.startDate.toLocaleDateString("en-GB", options);
         return "id = " + this.id + ", name = " + this.name + ", gender = " + this.gender + ", profile picture = " + this.profile + ", department = " + this.department + ", salary = " + this.salary + ", startDate = " + empDate + ", note = " + this.notes;
     }
     
