@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 const save = (event) => {
     event.preventDefault();
-    event.stopPropogation();
+    event.stopPropagation();
     try {
         setEmployeePayrollObject();
         createAndupdateStorage();
@@ -43,6 +43,7 @@ const save = (event) => {
 }
 
 const setEmployeePayrollObject = () => {
+    try{
     employeePayrollObj._name = getInputValueById('#name');
     employeePayrollObj._profile = getSelectedValues('[name=profile]').pop();
     employeePayrollObj._gender = getSelectedValues('[name=gender]').pop();
@@ -52,6 +53,9 @@ const setEmployeePayrollObject = () => {
     let date = getInputValueById('#day')+" "+getInputValueById('#month')+" "+
                getInputValueById('#year');
     employeePayrollObj._startDate = date;
+    }catch (e){
+        alert("Please enter valid details");
+    }
 }
 
 const getSelectedValues = (propertyValue) => {
