@@ -29,12 +29,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 const save = () => {
-    
+    //event.preventDefault();
+    //event.stopPropogation();
     try {
        let employeePayrollData =  createEmployeePayroll() ;
         createAndupdateStorage(employeePayrollData);
-        window.location.href = '../pages/home.html';
+        window.location.replace(site_properties.home_page);
     } catch (e) {
+        console.log(e);
         return ;
     }
 }
@@ -145,7 +147,7 @@ const setTextValue = (id, value) => {
     element.textContent = value;
 }
 
-const setSelectedIndex = (id, value) => {
+const setSelectedIndex = (id, index) => {
     const element = document.querySelector(id);
     element.selectedIndex = index;
 }

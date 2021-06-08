@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) =>{
 });
 
 const getEmployeePayrollDataFromStorage = () => {
-    return localStorage.getItem('EmployeePayrollList')?
+    return localStorage.getItem('EmployeePayrollList') ?
                         JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
 }
 

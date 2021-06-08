@@ -37,11 +37,12 @@ class EmployeePayRoll{
 
     get startDate(){ return this._startDate;}
     set startDate(startDate){
-        // let now=new Date();
-        // if (startDate > now) throw 'Start date is a Future Date!';
+         let now=new Date();
+         if (startDate > now) throw 'Start date is a Future Date!';
         // var diff = Math.abs(now.getTime() - startDate.getTime());
         // if (diff / (1000 * 60 * 60 *24) > 120)
         //    throw 'Start ate is Beyong 120 Days!';
+        else
         this._startDate = startDate;
     }
 
