@@ -33,13 +33,34 @@ const save = (event) => {
     event.stopPropagation();
     try {
         setEmployeePayrollObject();
+        if(site_properties.use_local_storage.match("true")){
         createAndupdateStorage();
         resetForm();
         window.location.replace(site_properties.home_page);
+        }else {
+            createOrUpdateEmployeePayroll();
+        }
     } catch (e) {
         console.log(e);
         return ;
     }
+}
+
+const createOrUpdateEmployeePayroll = () => {
+    let postURl = site_properties.server_url;
+    let methodCall = "POST";
+    if(isUpdate) {
+        methodCall = "PUT";
+        postURl = postURl + employeePayrollObj.id.toString();
+    }
+    makeServiceCall(methodCall, postURl, true, employeePayrollObj)
+       .then(responseText => {
+           resetForm();
+           window.location.replace(site_properties.home_page);
+       })
+       .catch(error => {
+           throw error;
+       });
 }
 
 const setEmployeePayrollObject = () => {
